@@ -40,14 +40,10 @@ public class LeitorOpcoesCLI {
 
       try {
         cmd = cmdParser.parse(options, args);
-      } catch (final ParseException e) {
-        System.err.println(e.getMessage());
-
+      } catch (final ParseException ex) {
         ajuda.printHelp("cotuba", options);
 
-        System.exit(1);
-
-        return;
+        throw new IllegalArgumentException("Opção inválida", ex);
       }
 
       final String nomeDoDiretorioDosMD = cmd.getOptionValue("dir");
