@@ -1,4 +1,10 @@
-package cotuba;
+package cotuba.application;
+
+import cotuba.epub.GeradorEPUB;
+import cotuba.pdf.GeradorPDF;
+import cotuba.md.RenderizadorMDParaHTML;
+import cotuba.domain.Capitulo;
+import cotuba.domain.Ebook;
 
 import java.nio.file.Path;
 import java.util.List;
