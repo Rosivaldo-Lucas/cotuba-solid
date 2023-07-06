@@ -1,5 +1,6 @@
 package cotuba.cli;
 
+import cotuba.application.ParametrosCotuba;
 import org.apache.commons.cli.*;
 
 import java.io.IOException;
@@ -9,7 +10,7 @@ import java.nio.file.Paths;
 import java.util.Comparator;
 import java.util.stream.Stream;
 
-class LeitorOpcoesCLI {
+class LeitorOpcoesCLI implements ParametrosCotuba {
 
   private Path diretorioDosMD;
   private String formato;
@@ -122,19 +123,22 @@ class LeitorOpcoesCLI {
     }
   }
 
-  public Path getDiretorioDosMD() {
-    return diretorioDosMD;
+  @Override
+  public String obtemFormato() {
+    return this.formato;
   }
 
-  public String getFormato() {
-    return formato;
+  @Override
+  public Path obtemDiretorioDosMD() {
+    return this.diretorioDosMD;
   }
 
-  public Path getArquivoDeSaida() {
-    return arquivoDeSaida;
+  @Override
+  public Path obtemArquivoDeSaida() {
+    return this.arquivoDeSaida;
   }
 
-  public Boolean getModoVerboso() {
+  public Boolean obtemModoVerboso() {
     return modoVerboso;
   }
 
