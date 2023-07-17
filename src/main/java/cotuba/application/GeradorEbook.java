@@ -4,18 +4,22 @@ import cotuba.domain.Ebook;
 import cotuba.epub.GeradorEPUBImpl;
 import cotuba.pdf.GeradorPDFImpl;
 
+import java.util.HashMap;
+import java.util.Map;
+
 public interface GeradorEbook {
+
+  Map<String, GeradorEbook> GERADORES = new HashMap<>() {{
+    put("pdf", new GeradorPDFImpl());
+    put("epub", new GeradorEPUBImpl());
+  }};
 
   void gera(final Ebook ebook);
 
   static GeradorEbook cria(final String formato) {
-    GeradorEbook geradorEbook;
+    final GeradorEbook geradorEbook = GERADORES.get(formato);
 
-    if ("pdf".equals(formato)) {
-      geradorEbook = new GeradorPDFImpl();
-    } else if ("epub".equals(formato)) {
-      geradorEbook = new GeradorEPUBImpl();
-    } else {
+    if (geradorEbook == null) {
       throw new IllegalArgumentException("Formato do ebook inválido: " + formato);
     }
 
