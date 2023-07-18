@@ -2,6 +2,7 @@ package cotuba.application;
 
 import cotuba.domain.Capitulo;
 import cotuba.domain.Ebook;
+import cotuba.domain.FormatoEbook;
 import cotuba.md.RenderizadorMDParaHTMLImpl;
 import org.springframework.stereotype.Component;
 
@@ -12,7 +13,7 @@ import java.util.List;
 public class Cotuba {
 
   public void executa(final ParametrosCotuba parametrosCotuba) {
-    final String formato = parametrosCotuba.obtemFormato();
+    final FormatoEbook formato = parametrosCotuba.obtemFormato();
     final Path diretorioDosMD = parametrosCotuba.obtemDiretorioDosMD();
     final Path arquivoDeSaida = parametrosCotuba.obtemArquivoDeSaida();
 
@@ -27,13 +28,7 @@ public class Cotuba {
 
     final GeradorEbook geradorEbook = GeradorEbook.cria(formato);
 
-    if ("pdf".equals(formato)) {
-      geradorEbook.gera(ebook);
-    } else if ("epub".equals(formato)) {
-      geradorEbook.gera(ebook);
-    } else {
-      throw new IllegalArgumentException("Formato do ebook inválido: " + formato);
-    }
+    geradorEbook.gera(ebook);
   }
 
 }
