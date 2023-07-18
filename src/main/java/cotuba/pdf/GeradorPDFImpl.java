@@ -8,15 +8,19 @@ import com.itextpdf.layout.element.AreaBreak;
 import com.itextpdf.layout.element.IBlockElement;
 import com.itextpdf.layout.element.IElement;
 import com.itextpdf.layout.property.AreaBreakType;
+import cotuba.application.GeradorPDF;
 import cotuba.domain.Capitulo;
 import cotuba.domain.Ebook;
+import org.springframework.stereotype.Component;
 
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.util.List;
 
-public class GeradorPDF {
+@Component
+public class GeradorPDFImpl implements GeradorPDF {
 
+  @Override
   public void gera(final Ebook ebook) {
     final Path arquivoDeSaida = ebook.getArquivoDeSaida();
 

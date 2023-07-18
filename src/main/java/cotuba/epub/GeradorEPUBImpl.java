@@ -1,18 +1,22 @@
 package cotuba.epub;
 
+import cotuba.application.GeradorEPUB;
 import cotuba.domain.Capitulo;
 import cotuba.domain.Ebook;
 import nl.siegmann.epublib.domain.Book;
 import nl.siegmann.epublib.domain.Resource;
 import nl.siegmann.epublib.epub.EpubWriter;
 import nl.siegmann.epublib.service.MediatypeService;
+import org.springframework.stereotype.Component;
 
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
-public class GeradorEPUB {
+@Component
+public class GeradorEPUBImpl implements GeradorEPUB {
 
+  @Override
   public void gera(final Ebook ebook) {
     final Path arquivoDeSaida = ebook.getArquivoDeSaida();
 
